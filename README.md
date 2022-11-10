@@ -1,35 +1,49 @@
-# gist-explorer
+# Vue Gist Explorer
 
-This template should help get you started developing with Vue 3 in Vite.
+## About
 
-## Recommended IDE Setup
+Demo app project for the Smart Impact IT PHP developer job interview.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## How to run
 
-## Customize configuration
+**Prerequisites:**
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+- nodejs v16 or above;
+- NPM v8.15 or above;
 
-## Project Setup
+1. Clone the repo to your local machine;
+2. Open a terminal and navigate to the cloned repository folder and run: `npm install`;
+3. After all the required packages were installed run: `npm run dev`;
+4. Access the URL listed in the terminal to view the app locally;
 
-```sh
-npm install
-```
+## Project requirements
 
-### Compile and Hot-Reload for Development
+Create a single page application (a web page) using your preferred frontend framework (React, Vue, Angular, etc), that will use the Github Gists API to display the gists for a Github user (https://docs.github.com/en/rest/gists/gists#list-gists-for-a-user).
 
-```sh
-npm run dev
-```
+1. There will be an input for the username of the Github user.
 
-### Compile and Minify for Production
+2. You will load some info about this username (image, name, description) and also their public gists.
 
-```sh
-npm run build
-```
+3. Their gists will be loaded with
 
-### Lint with [ESLint](https://eslint.org/)
+   1. their title, date of creation;
+   2. their programming language as a colored badge;
+   3. a list of their forks and the users that forked them.
 
-```sh
-npm run lint
-```
+4. On click, the gist will be loaded in a syntax-highlighted code viewer.
+
+5. Optimize the page for performance.
+
+Other features are also nice to have, but the focus should be on the items above.
+
+## Design considerations:
+
+### API rate limiting
+
+Almost all public API have some kind of rate limitig function (limiting the number of request a IP can have per hour/minute/second). Github REST API documentation specifies:
+
+_"For unauthenticated requests, the rate limit allows for up to 60 requests per hour. Unauthenticated requests are associated with the originating IP address, and not the person making requests."_ [1](https://docs.github.com/en/rest/overview/resources-in-the-rest-api)
+
+As per the project requirement 3.iii the data needed to show the forks and users is not provided in the "list-gist-for-a-user" endpoint. To get the necessary data there is a need to run subsequent requests to [list-gist-forks](https://docs.github.com/en/rest/gists/gists#list-gist-forks) endpoint for additional data.
+
+Second related to requirement 4. is the loading of files contents, witch also requires subsequent requests to [get-a-gist](https://docs.github.com/en/rest/gists/gists#get-a-gist) endpoint.
