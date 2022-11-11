@@ -47,3 +47,14 @@ _"For unauthenticated requests, the rate limit allows for up to 60 requests per 
 As per the project requirement 3.iii the data needed to show the forks and users is not provided in the "list-gist-for-a-user" endpoint. To get the necessary data there is a need to run subsequent requests to [list-gist-forks](https://docs.github.com/en/rest/gists/gists#list-gist-forks) endpoint for additional data.
 
 Second related to requirement 4. is the loading of files contents, witch also requires subsequent requests to [get-a-gist](https://docs.github.com/en/rest/gists/gists#get-a-gist) endpoint.
+
+## References
+
+- https://vuejs.org/guide
+- https://v4.apollo.vuejs.org
+- https://docs.github.com/en/graphql/overview/explorer
+- https://highlightjs.org/
+- https://medium.com/@anoob.bava/how-to-use-the-github-graphql-api-in-vue-js-with-vue-apollo-24304b6731cf
+- https://www.endorlabs.com/blog/how-to-get-the-most-out-of-github-api-rate-limits
+- https://www.newline.co/@kchan/building-a-graphql-application-with-vue-3-and-apollo--4679b402
+- https://picturepan2.github.io/spectre
