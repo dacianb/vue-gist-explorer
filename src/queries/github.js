@@ -1,7 +1,7 @@
 import gql from "graphql-tag";
 
 export const PROFILE_WITH_GISTS = gql`
-  query ($username: String!) {
+  query ($username: String!, $limit: Int!) {
     user(login: $username) {
       name
       email
@@ -14,7 +14,7 @@ export const PROFILE_WITH_GISTS = gql`
       repositories {
         totalCount
       }
-      gists(first: 10, orderBy: { field: CREATED_AT, direction: DESC }) {
+      gists(first: $limit, orderBy: { field: CREATED_AT, direction: DESC }) {
         totalCount
         edges {
           node {

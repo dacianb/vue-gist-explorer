@@ -11,10 +11,13 @@ const username = ref("");
 const queryActive = ref(false);
 const router = useRouter();
 
+const gistsToLoad = 10;
+
 const { result, loading, error } = useQuery(
   PROFILE_WITH_GISTS,
   {
     username: username,
+    limit: gistsToLoad,
   },
   () => {
     return {
