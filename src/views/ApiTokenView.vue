@@ -56,7 +56,7 @@ function save() {
           information
         </p>
       </div>
-      <div class="column col-6">
+      <div class="column col-4 col-mx-auto">
         <form class="form-horizontal" @submit.prevent="save">
           <div class="form-group">
             <label class="form-label" for="api-token">API token</label>

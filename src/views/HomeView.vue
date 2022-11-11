@@ -1,5 +1,6 @@
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
+import { useRouter, RouterLink } from "vue-router";
 import { isEmpty } from "lodash";
 import { useQuery } from "@vue/apollo-composable";
 import UserProfile from "../components/UserProfile.vue";
@@ -8,6 +9,7 @@ import { PROFILE_WITH_GISTS } from "../queries/github";
 
 const username = ref("");
 const queryActive = ref(false);
+const router = useRouter();
 
 const { result, loading, error } = useQuery(
   PROFILE_WITH_GISTS,
@@ -20,6 +22,13 @@ const { result, loading, error } = useQuery(
     };
   }
 );
+
+onMounted(() => {
+  const accessToken = localStorage.getItem("access-token");
+  if (!accessToken || accessToken.length < 40) {
+    router.push({ name: "api-token" });
+  }
+});
 
 function searchUser(searchQuery) {
   result.value = {};
@@ -36,6 +45,11 @@ function searchUser(searchQuery) {
         <div class="column col-8 col-mx-auto left-content">
           <h2>Vue Gist Explorer</h2>
           <UserSearchForm @search="searchUser" :disable-input="loading" />
+          <div class="links text-center">
+            <RouterLink :to="{ name: 'api-token' }"
+              >Config API token</RouterLink
+            >
+          </div>
         </div>
       </div>
       <div
@@ -59,6 +73,9 @@ function searchUser(searchQuery) {
 }
 .left-content {
   margin-top: 40vh;
+}
+.links {
+  margin-top: 2rem;
 }
 
 .center-container {
