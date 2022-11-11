@@ -1,6 +1,5 @@
 <script setup>
 import { onMounted, ref } from "vue";
-// Token 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
 
 const token = ref("");
 
