@@ -39,7 +39,7 @@ function searchUser(searchQuery) {
         </div>
       </div>
       <div
-        class="column col-8 col-mx-auto col-sm-12 col-md-6 col-lg-8 bg-gray center-container"
+        class="column col-8 col-mx-auto col-sm-12 col-md-6 col-lg-8 center-container"
       >
         <div v-if="loading" class="loading loading-lg"></div>
 
