@@ -9,10 +9,12 @@ import {
 import { DefaultApolloClient } from "@vue/apollo-composable";
 import router from "./router";
 import App from "./App.vue";
-import "./assets/main.css";
 import hljsVuePlugin from "@highlightjs/vue-plugin";
 import "highlight.js/styles/stackoverflow-light.css";
 import "highlight.js/lib/common";
+
+import "spectre.css/dist/spectre.css";
+import "spectre.css/dist/spectre-icons.css";
 
 // Set the Github API token from localstorage
 const token = localStorage.getItem("access-token");

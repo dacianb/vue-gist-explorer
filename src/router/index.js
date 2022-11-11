@@ -10,12 +10,6 @@ const router = createRouter({
       component: HomeView,
     },
     {
-      path: "/user-profile/:username",
-      name: "user-profile",
-      props: true,
-      component: () => import("../views/UserProfileView.vue"),
-    },
-    {
       path: "/api-token",
       name: "api-token",
       component: () => import("../views/ApiTokenView.vue"),
