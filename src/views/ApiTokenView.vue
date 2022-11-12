@@ -1,5 +1,6 @@
 <script setup>
 import { onMounted, ref } from "vue";
+import config from "../config";
 
 const token = ref("");
 
@@ -13,10 +14,12 @@ onMounted(() => {
 function save() {
   if (token.value !== "" || token.value.length < 40) {
     localStorage.setItem("access-token", token.value);
-
-    // Use this redirect method instead of router to make a full page reload and set the token for Apollo
-    window.location.href = "/";
+    redirectToBase();
   }
+}
+function redirectToBase() {
+  // Use this redirect method instead of router to make a full page reload and set the token for Apollo
+  window.location.href = config.baseUrl;
 }
 </script>
 <template>
@@ -71,7 +74,7 @@ function save() {
 
           <div class="input-group">
             <button class="btn btn-primary">Save token</button>
-            <a class="btn btn-link" href="/">Return Home</a>
+            <a class="btn btn-link" @click="redirectToBase()">Return Home</a>
           </div>
         </form>
       </div>

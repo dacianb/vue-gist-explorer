@@ -10,6 +10,8 @@ import { DefaultApolloClient } from "@vue/apollo-composable";
 import router from "./router";
 import App from "./App.vue";
 import hljsVuePlugin from "@highlightjs/vue-plugin";
+import config from "./config";
+
 import "highlight.js/styles/stackoverflow-light.css";
 import "highlight.js/lib/common";
 
@@ -30,7 +32,7 @@ const additiveLink = from([
     }));
     return forward(operation);
   }),
-  new HttpLink({ uri: "https://api.github.com/graphql" }),
+  new HttpLink({ uri: config.apiEndpoint }),
 ]);
 
 // Configure the Apollo client
