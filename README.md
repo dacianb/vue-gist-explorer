@@ -6,6 +6,10 @@ Demo app project for the Smart Impact IT PHP developer job interview.
 
 ## How to run
 
+Project is deployed on Github pages, to view please use following link:
+
+https://dacianb.github.io/vue-gist-explorer
+
 **Prerequisites:**
 
 - nodejs v16 or above;
@@ -90,6 +94,10 @@ Since the scope of the project is limited, i opted to not include a global state
 3. Lazy loading some components;
 4. UI/CSS improvements;
 5. Converting the project to TypeScript;
+
+### Bugs
+
+- Syntax highlighting does not work on production.
 
 ## References
 
