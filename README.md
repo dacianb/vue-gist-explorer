@@ -40,13 +40,56 @@ Other features are also nice to have, but the focus should be on the items above
 
 ### API rate limiting
 
-Almost all public API have some kind of rate limitig function (limiting the number of request a IP can have per hour/minute/second). Github REST API documentation specifies:
+Almost all public API have some kind of rate limiting function (limiting the number of request a IP can have per hour/minute/second). Github REST API documentation specifies:
 
 _"For unauthenticated requests, the rate limit allows for up to 60 requests per hour. Unauthenticated requests are associated with the originating IP address, and not the person making requests."_ [1](https://docs.github.com/en/rest/overview/resources-in-the-rest-api)
 
 As per the project requirement 3.iii the data needed to show the forks and users is not provided in the "list-gist-for-a-user" endpoint. To get the necessary data there is a need to run subsequent requests to [list-gist-forks](https://docs.github.com/en/rest/gists/gists#list-gist-forks) endpoint for additional data.
 
 Second related to requirement 4. is the loading of files contents, witch also requires subsequent requests to [get-a-gist](https://docs.github.com/en/rest/gists/gists#get-a-gist) endpoint.
+
+### Performance
+
+Since the scope of the project is somewhat limited, actual performance is limited by the number and time for API requests to happen. Limiting the number of gists loaded on each request would also assure a good overall UI performance.
+
+## Implementation details:
+
+After exploring the above mentioned issues and limitations, I've implemented the following solutions:
+
+### Graphql API
+
+**Advantages:**
+
+1. Around 5000 requests/h;
+2. Flexible data model, the app can get all of the data in one request;
+3. Easy to extend the requested data without needing to write any new fetch logic;
+4. Much better network performance.
+
+**Disadvantages:**
+
+1. API token is mandatory;
+2. Steeper learning curve / "new" technology;
+3. Needs dedicated packages to work (Apollo).
+
+### API token stored in local storage
+
+Since the Graphql API needs a mandatory api access token and the fact that the application has no backend we need to store the access token on the client side. I chose to save it to local storage since it's more user friendly. I also intend to deploy the app on Github pages.
+
+### Vue router
+
+I decided to include the vue router package, but for the current project scope it is not mandatory.
+
+### No state management (Pinia)
+
+Since the scope of the project is limited, i opted to not include a global state management library, but for future development and additional functionality this should be a good candidate.
+
+## Future optimization
+
+1. Refactoring some components to be more generic (and reusing them);
+2. Adding pagination to load more gists without slowing down the render performance;
+3. Lazy loading some components;
+4. UI/CSS improvements;
+5. Converting the project to TypeScript;
 
 ## References
 
