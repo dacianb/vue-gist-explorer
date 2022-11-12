@@ -1,7 +1,7 @@
 <script setup>
-import { computed } from "vue";
+import ForkItem from "./ForkItem.vue";
 
-const props = defineProps({
+defineProps({
   forks: {
     type: Object,
     required: true,
@@ -12,20 +12,7 @@ const props = defineProps({
 <template>
   <div class="columns forks">
     <div class="column col-12">
-      <ul>
-        <li v-for="fork in forks.nodes" :key="fork.login">
-          {{ fork.name }}
-          <p>
-            {{ fork.createdAt }}
-            <figure
-              :data-tooltip="fork.owner.login"
-              class="avatar avatar-md tooltip tooltip-right"
-            >
-              <img :src="fork.owner.avatarUrl" alt="..." />
-            </figure>
-          </p>
-        </li>
-      </ul>
+      <ForkItem v-for="fork in forks.nodes" :key="fork.login" :fork="fork" />
     </div>
   </div>
 </template>
@@ -33,8 +20,5 @@ const props = defineProps({
 <style scoped>
 .forks {
   margin-bottom: 1rem;
-}
-.forks figure {
-  margin-right: 10px;
 }
 </style>

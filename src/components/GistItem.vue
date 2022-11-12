@@ -27,22 +27,19 @@ const createdAt = computed(() => {
         </p>
       </div>
     </div>
-    <div class="panel-nav">
-      <!-- navigation components: tabs, breadcrumbs or pagination -->
-    </div>
+    <div class="panel-nav"></div>
     <div class="panel-body">
       <p v-show="!isEmpty(gist.description)">
         <strong>Description: </strong> {{ gist.description }}
       </p>
-      <p><strong>Forks: </strong></p>
-      <ForkList :forks="gist.forks" />
+      <div v-if="gist.forks.totalCount !== 0">
+        <p><strong>Forks: </strong></p>
+        <ForkList :forks="gist.forks" />
+      </div>
       <p><strong>Files: </strong></p>
       <FileList :files="gist.files" />
-      <!-- contents -->
     </div>
-    <div class="panel-footer">
-      <!-- buttons or inputs -->
-    </div>
+    <div class="panel-footer"></div>
   </div>
 </template>
 

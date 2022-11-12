@@ -6,12 +6,14 @@ import { useQuery } from "@vue/apollo-composable";
 import UserProfile from "../components/UserProfile.vue";
 import UserSearchForm from "../components/UserSearchForm.vue";
 import { PROFILE_WITH_GISTS } from "../queries/github";
+import config from "../config";
 
 const username = ref("");
 const queryActive = ref(false);
 const router = useRouter();
 
-const gistsToLoad = 10;
+// The default amount of gists to load on request
+const gistsToLoad = config.gistsToLoad;
 
 const { result, loading, error } = useQuery(
   PROFILE_WITH_GISTS,

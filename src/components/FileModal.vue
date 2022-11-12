@@ -44,7 +44,6 @@ const lang = computed(() => {
       <div class="modal-header">
         <a
           class="btn btn-clear float-right"
-          href="#modals-sizes"
           aria-label="Close"
           @click="$emit('closeModal')"
         ></a>

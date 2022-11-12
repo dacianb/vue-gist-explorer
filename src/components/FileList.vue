@@ -1,6 +1,6 @@
 <script setup>
 import FileItem from "./FileItem.vue";
-const props = defineProps({
+defineProps({
   files: {
     type: Object,
     required: true,
